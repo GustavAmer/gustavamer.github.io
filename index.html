@@ -17,27 +17,27 @@
 			}
 		}
 
-		function get_action(form) {
+		function saadaKiri(form) {
+			var form = document.getElementById("form");
 			var nimi = form.elements["nimi"].value;
 			var inimeste_arv = form.elements["inimeste_arv"].value;
 			var kuupäev = form.elements["kuupäev"].value;
 			var sisu = form.elements["sisu"].value;
-			console.log(nimi, inimeste_arv, kuupäev, sisu);
 			var params = {
 				nimi,
 				inimeste_arv,
 				kuupäev,
 				sisu
 				};
-			console.log(params);
-			emailjs.send("service_8qcrvbg","template_j1dd0br", params).then(function() {
-                        console.log('SUCCESS!');
-				return false;
-                    }, function(error) {
-                        console.log('FAILED...', error);
-				return false;
-                    });
-			return false;
+			emailjs.send("service_8qcrvbg","template_j1dd0br", params)
+				.then(function() {
+					console.log('SUCCESS!');
+					alert("Tellimus edastatud!");
+                }, function(error) {
+					console.log('FAILED...', error);
+					alert("Tellimuse edastamine ebaõnnestus. Proovi mõne aja pärast uuesti.");
+				}
+			);
 		}
 	</script>
 </head>
@@ -174,12 +174,12 @@ h1, h2, h3, h4, h5, h6 {
 	<p class="w3-text-blue-grey w3-large"><b>Saku Tiigi tänav 2. Indeks 75501</b></p>
     <p>Telefon 6041723</p>
 	<a href=" https://www.facebook.com/rocco.saku">Facebook Rocco Saku</a>
-    <form id="form" onsubmit="get_action(this);">
+    <form id="form" action="#" onsubmit="saadaKiri();return false">
       <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="nimi"></p>
       <p><input class="w3-input w3-padding-16" type="number" placeholder="How many people" required name="inimeste_arv"></p>
       <p><input class="w3-input w3-padding-16" type="date" placeholder="Date and time" required name="kuupäev"></p>
       <p><input class="w3-input w3-padding-16" type="text" placeholder="Message \ Special requirements" required name="sisu"></p>
-      <p><button class="w3-button w3-light-grey w3-section" type="submit">SEND MESSAGE</button></p>
+      <p><button class="w3-button w3-light-grey w3-section" type="submit" >SEND MESSAGE</button></p>
     </form>
   </div>
   
