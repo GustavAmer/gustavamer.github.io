@@ -32,8 +32,10 @@
 			console.log(params);
 			emailjs.send("service_8qcrvbg","template_j1dd0br", params).then(function() {
                         console.log('SUCCESS!');
+				return false;
                     }, function(error) {
                         console.log('FAILED...', error);
+				return false;
                     });
 			return false;
 		}
